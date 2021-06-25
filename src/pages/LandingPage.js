@@ -9,6 +9,10 @@ import Testimony from "parts/Testimony";
 import Footer from "parts/Footer";
 
 export default class LandingPage extends Component {
+    componentDidMount(){
+        window.title = "Landing Page"
+        window.scrollTo(0,0);
+    }
     constructor(props) {
         super(props);
         this.refMostPicked = React.createRef();
