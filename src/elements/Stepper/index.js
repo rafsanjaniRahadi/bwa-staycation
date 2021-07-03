@@ -14,17 +14,22 @@ export default function Stepper(props) {
     const indexStep = stepsKeys.indexOf(CurrentStep);
 
     function prevStep() {
-        if (+indexStep > totalStep) setCurrentStep(stepsKeys[indexStep - 1]);
+        if (+indexStep > 0) setCurrentStep(stepsKeys[indexStep - 1]);
     }
 
     function nextStep() {
-        if (indexStep < totalStep) setCurrentStep(stepsKeys[indexStep +1]);
+        if (+indexStep < totalStep) setCurrentStep(stepsKeys[indexStep +1]);
     }
 
-    return <>{props.childern(prevStep, nextStep, CurrentStep, steps)}</>;
+    return <>{props.children(prevStep, nextStep, CurrentStep, steps)}</>;
 }
 
 Stepper.propTypes = {
     data: propTypes.object.isRequired,
     initialStep: propTypes.string
-}
+};
+
+export { default as Numbering } from "./Numbering";
+export { default as Meta } from "./Meta";
+export { default as Controller } from "./Controller";
+export { default as MainContent } from "./MainContent";
