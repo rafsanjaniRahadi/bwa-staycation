@@ -48,7 +48,7 @@ import { div } from "prelude-ls";
 
   render() {
     const {data} = this.state;
-    const { checkout } = this.props;
+    const { checkout, page } = this.props;
 
     if(!checkout) return 
       <div className="container">
@@ -56,9 +56,14 @@ import { div } from "prelude-ls";
           <div col-3>
             Pilih Hotel ?
             <div> 
-              <Button className="btn mt-5" type="link" href="/" isLight>
-                Back
-              </Button>
+              <Button
+                  className="btn mt-5"
+                  type="button"
+                  onClick={() => this.props.history.goBack()}
+                  isLight
+                >
+                  Back
+                </Button>
             </div>
           </div>
         </div>
@@ -72,7 +77,7 @@ import { div } from "prelude-ls";
           <BookingInformation
             data={data}
             checkout={checkout}
-            ItemDetails={ItemDetails}
+            ItemDetails={page[checkout._id]}
             onChange={this.onChange}
           />
         ),
@@ -191,7 +196,8 @@ import { div } from "prelude-ls";
 }
 
 const mapStateTopProps = (state) => ({
-  checkout: state.checkout
+  checkout: state.checkout,
+  page: state.page
 })
 
 export default connect(mapStateTopProps)(Checkout);
