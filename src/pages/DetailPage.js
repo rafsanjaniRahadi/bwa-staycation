@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
 import Header from 'parts/Header';
 import PageDetailTitle from 'parts/PageDetailTitle';
 import FeaturedImage from 'parts/FeaturedImage';
@@ -11,7 +13,9 @@ import Footer from 'parts/Footer';
 
 import ItemDetails from "json/itemDetails.json";
 
-export default class DetailPage extends Component {
+import { checkoutBooking } from 'store/action/checkout';
+
+class DetailPage extends Component {
     
     componentDidMount(){
         window.title = "Details Page"
@@ -39,7 +43,7 @@ export default class DetailPage extends Component {
                     <div className="col-5">
                         <BookingForm
                         itemDetails={ItemDetails}
-                        ></BookingForm>
+                        startBooking={this.props.checkoutBooking} />
                     </div>
                 </div>
             </section>
@@ -50,3 +54,5 @@ export default class DetailPage extends Component {
         )
     }
 }
+
+export default  connect(null, { checkoutBooking })(DetailPage);

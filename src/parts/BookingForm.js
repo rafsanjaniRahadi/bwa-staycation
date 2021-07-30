@@ -78,6 +78,7 @@ class BookingForm extends Component {
     this.props.history.push("/checkout");
   };
 
+  
   render() {
     const { data } = this.state;
     const { itemDetails } = this.props;
