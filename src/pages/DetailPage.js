@@ -24,7 +24,7 @@ class DetailPage extends Component {
         if (!this.props.page[this.props.match.params.id])
         this.props
           .fetchPage(
-            `${process.env.REACT_APP_HOST}/api/v1/member/detail-page/${this.props.match.params.id}`,
+            `/detail-page/${this.props.match.params.id}`,
             this.props.match.params.id
           )
     }
@@ -32,19 +32,18 @@ class DetailPage extends Component {
         const { page, match } = this.props;
 
         if(!page[match.params.id]) return null
-
+        console.log(page[match.params.id]);
         const breadcrumb = [
             { pageTitle: "Home", pageHref: ""},
             { pageTitle: "House Detail", pageHref: ""}
         ];
         return (
             <>
-            <Header {...this.props}></Header>
+            <Header {...this.props} />
             <PageDetailTitle
                 breadcrumb={breadcrumb}
                 data={page[match.params.id]}
-            >
-            </PageDetailTitle>
+            />
             <FeaturedImage  data={page[match.params.id].imageId} />
             <section className="container">
                 <div className="row">
@@ -65,6 +64,7 @@ class DetailPage extends Component {
         )
     }
 }
+
 
 const mapsStateToProps = (state) => ({
     page: state.page,
